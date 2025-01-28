@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hacker Simulator</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: black;
+      color: #00ff00;
+      font-family: monospace;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    #terminal {
+      position: relative;
+      background: rgba(0, 0, 0, 0.9);
+      border: 1px solid #00ff00;
+      border-radius: 5px;
+      width: 360px;
+      height: 640px; /* Rasio 9:16 */
+      box-shadow: 0 0 10px #00ff00;
+      display: flex;
+      flex-direction: column;
+      justify-content: center; /* Tengah secara vertikal */
+      align-items: center; /* Tengah secara horizontal */
+      overflow: hidden;
+      padding: 20px;
+    }
+    #loading {
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .dot {
+      font-size: 24px;
+      margin: 0 2px;
+      animation: blink 1.5s infinite;
+    }
+    .dot:nth-child(1) {
+      animation-delay: 0s;
+    }
+    .dot:nth-child(2) {
+      animation-delay: 0.3s;
+    }
+    .dot:nth-child(3) {
+      animation-delay: 0.6s;
+    }
+    @keyframes blink {
+      0%, 100% {
+        opacity: 0.2;
+      }
+      50% {
+        opacity: 1;
+      }
+    }
+    #hello-text {
+      display: none;
+      margin-bottom: 10px;
+      font-size: 20px;
+      text-align: center;
+    }
+    #show-text {
+      display: none;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #00ff00;
+      border: none;
+      color: black;
+      font-family: monospace;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+      box-shadow: 0 0 5px #00ff00;
+      text-align: center;
+    }
+    #show-text:hover {
+      background-color: #009900;
+    }
+    .output-box {
+      margin-top: 20px;
+      padding: 10px;
+      width: 80%;
+      background-color: rgba(0, 0, 0, 0.9);
+      border: 1px solid #00ff00;
+      border-radius: 5px;
+      box-shadow: 0 0 5px #00ff00;
+      text-align: center;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      white-space: normal; /* Memastikan teks tidak terus dalam satu baris */
+    }
+  </style>
+</head>
+<body>
+  <div id="terminal">
+    <div id="loading">
+      Loading<span class="dot">.</span><span class="dot">.</span><span class="dot">.</span>
+    </div>
+    <div id="hello-text"></div>
+    <button id="show-text">GetLink</button>
+  </div>
+
+  <script>
+    const loadingDiv = document.getElementById('loading');
+    const helloText = document.getElementById('hello-text');
+    const button = document.getElementById('show-text');
+    const terminal = document.getElementById('terminal');
+
+    // Simulasi loading selama 3 detik
+    setTimeout(() => {
+      loadingDiv.style.display = "none"; // Sembunyikan animasi loading
+      helloText.style.display = "block"; // Tampilkan teks "Hello, World!"
+      button.style.display = "block";   // Tampilkan tombol
+    }, 15000);
+
+    // Tombol hanya bisa diklik sekali
+    button.addEventListener('click', () => {
+      // Buat elemen kotak untuk teks "Hello, World!" dalam terminal
+      const helloWorldBox = document.createElement('div');
+      helloWorldBox.textContent = "https://www.mediafire.com/file/nmdbh07m6c9z6hm/Delta-656.677-03.apk/file";
+      helloWorldBox.className = "output-box"; // Tambahkan kelas "output-box" untuk styling
+      terminal.appendChild(helloWorldBox); // Tambahkan kotak teks ke terminal
+
+      // Sembunyikan tombol dan teks "Hello, World!" setelah tombol diklik
+      helloText.style.display = "none";
+      button.style.display = "none";
+    });
+  </script>
+</body>
+</html>
