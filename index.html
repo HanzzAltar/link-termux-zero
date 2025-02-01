@@ -1,142 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hacker Simulator with Captcha</title>
-  <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: black;
-      color: #00ff00;
-      font-family: monospace;
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-    #terminal {
-      position: relative;
-      background: rgba(0, 0, 0, 0.9);
-      border: 1px solid #00ff00;
-      border-radius: 5px;
-      width: 85%;
-      height: 90%;
-      box-shadow: 0 0 10px #00ff00;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-      padding: 20px;
-    }
-    #hello-text {
-      margin-bottom: 10px;
-      font-size: 20px;
-      text-align: center;
-    }
-    #captcha-button, #get-link {
-      margin-top: 20px;
-      padding: 10px 20px;
-      background-color: #00ff00;
-      border: none;
-      color: black;
-      font-family: monospace;
-      font-size: 16px;
-      cursor: pointer;
-      border-radius: 5px;
-      box-shadow: 0 0 5px #00ff00;
-      text-align: center;
-      display: none; /* Default disembunyikan */
-    }
-    #captcha-button:hover, #get-link:hover {
-      background-color: #009900;
-    }
-    #loading {
-      display: none; /* Loading hanya muncul setelah verifikasi captcha berhasil */
-      font-size: 18px;
-      margin-top: 20px;
-    }
-    .output-box {
-      margin-top: 20px;
-      padding: 10px;
-      width: 100%;
-      background-color: rgba(0, 0, 0, 0.9);
-      border: 1px solid #00ff00;
-      border-radius: 5px;
-      box-shadow: 0 0 5px #00ff00;
-      text-align: center;
-      word-wrap: break-word;
-      overflow-wrap: break-word;
-      white-space: normal;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menampilkan Teks</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .text {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
 </head>
 <body>
-  <div id="terminal">
-    <div id="hello-text">Click Untuk Verifikasi Captcha:</div>
-    <button id="captcha-button">Verifikasi Captcha</button>
-    <div id="loading">Loading...</div>
-    <button id="get-link">GetLink</button>
-  </div>
-
-  <script>
-    const helloText = document.getElementById("hello-text");
-    const captchaButton = document.getElementById("captcha-button");
-    const loadingText = document.getElementById("loading");
-    const getLinkButton = document.getElementById("get-code");
-    const terminal = document.getElementById("terminal");
-
-    // Tampilkan tombol captcha setelah halaman dimuat
-    window.onload = () => {
-      captchaButton.style.display = "block";
-    };
-
-    // Fungsi untuk menangani verifikasi captcha
-    captchaButton.addEventListener("click", () => {
-      const captcha = new TencentCaptcha('2032416176', function(res) {
-        if (res.ret === 0) { // Jika captcha berhasil diverifikasi
-          alert("Captcha verified successfully!");
-          helloText.style.display = "none"; // Hilangkan teks
-          captchaButton.style.display = "none"; // Sembunyikan tombol captcha
-          loadingText.style.display = "block"; // Tampilkan teks Loading...
-
-          // Setelah 5 detik, tampilkan tombol GetLink
-          setTimeout(() => {
-            loadingText.style.display = "none"; // Sembunyikan teks Loading
-            getLinkButton.style.display = "block"; // Tampilkan tombol GetLink
-          }, 20000);
-        } else {
-          alert("Captcha verification failed. Please try again.");
-        }
-      }, { https: true }); // Pastikan menggunakan protokol HTTPS
-      captcha.show(); // Tampilkan captcha
-    });
-
-    // Fungsi tombol Get Link
-    getLinkButton.addEventListener("click", () => {
-      const linkBox = document.createElement("div");
-      linkBox.textContent = " salin code ini bre: clear
+    <div class="text">ini Lu salin code nya : 
+ clear
  echo " 
 <===================================>
- __ __ _ _____
-|  |  | |_| | |___ ___ ___ ___
-|_ _| _| | .'| |- _|- _|
-  |_| |_| |__|__|__,|_|_|___|___|
+ 
+           isi sendiri 
 
 <==========Create By Hanzz==========> " | lolcat
 
 
 PS1='\[\e[31m\]┌─[\[\e[37m\]\T\[\e[31m\]]──\e[1;93m[alex]\e[0;31m──[\#]\n|\n\e[0;31m└─[\[\e[31m\]\e[0;35m\W\[\e[31m\]]──► \e[1;92m'
 
-        ";
-      linkBox.className = "output-box";
-      terminal.appendChild(linkBox); // Tampilkan tautan di terminal
-      getLinkButton.style.display = "none"; // Sembunyikan tombol Get Link
-    });
-  </script>
 </body>
 </html>
